@@ -181,6 +181,9 @@
             return readyToPick;
         }
 
-        public abstract Mushroom Reproduce();
+        protected Mushroom Reproduce(Mushroom mushroom)
+        {
+            return mushroom;
+        }
     }
 }

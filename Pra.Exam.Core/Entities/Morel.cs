@@ -21,7 +21,7 @@ namespace Pra.Exam.Core.Entities
             return "When this mushroom is eaten, your vision becomes blurry and very colorful";
         }
 
-        public override Mushroom Reproduce()
+        public Mushroom Reproduce()
         {
             return new Morel();
         }

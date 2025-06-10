@@ -10,7 +10,7 @@ namespace Pra.Exam.Core.Entities
             GrowthRate = 2; // cm per night
         }
 
-        public override Mushroom Reproduce()
+        public Mushroom Reproduce()
         {
             return new Portobello();
         }
