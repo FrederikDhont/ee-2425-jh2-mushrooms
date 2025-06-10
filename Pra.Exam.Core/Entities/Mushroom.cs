@@ -101,14 +101,14 @@
         public override string ToString()
         {
             string notAliveIcon = !IsAlive ? "💀 " : "";
-            return $"{notAliveIcon}{Name}:   ⚖️ {CurrentWeight} gr. (max: {MaxWeight})   📏 {GetSizeDisplay()}   📈 {GrowthRate} cm/night";
+            return $"{notAliveIcon}{Name}:   ⚖️ {Math.Round(CurrentWeight, 0)} gr. (max: {MaxWeight})   📏 {GetSizeDisplay()}   📈 {GrowthRate} cm/night";
         }
 
         string GetSizeDisplay()
         {
             string sizeDisplay = "";
 
-            for (int i = 0; i < CurrentSize; i++)
+            for (int i = 0; i < Math.Floor(CurrentSize); i++)
             {
                 sizeDisplay += "◉";
             }

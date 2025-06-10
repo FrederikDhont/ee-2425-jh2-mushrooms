@@ -27,9 +27,9 @@ namespace Pra.Exam.Core.Services
         // Methods
         private void SeedMushrooms()
         {
-            Portobello portobello = new Portobello();
             Chanterelle chanterelle = new Chanterelle();
             Morel morel = new Morel();
+            Portobello portobello = new Portobello();
 
             // Add data to list
             mushrooms = new List<Mushroom> { portobello, chanterelle, morel };

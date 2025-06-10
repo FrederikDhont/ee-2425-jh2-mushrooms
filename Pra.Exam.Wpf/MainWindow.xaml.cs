@@ -1,4 +1,5 @@
-﻿using Pra.Exam.Core.Services;
+﻿using Pra.Exam.Core.Entities;
+using Pra.Exam.Core.Services;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -38,7 +39,15 @@ namespace Pra.Exam.Wpf
         }
         private void BtnCycleDays_Click(object sender, RoutedEventArgs e)
         {
+            int numOfDays;
+            Int32.TryParse(txtNumberOfCycles.Text, out numOfDays);
 
+            foreach (Mushroom mushroom in forest.Mushrooms)
+            {
+                mushroom.Grow(numOfDays);
+            }
+
+            UpdateForestListInGui();
         }
 
         private void BtnPickMushroom_Click(object sender, RoutedEventArgs e)
