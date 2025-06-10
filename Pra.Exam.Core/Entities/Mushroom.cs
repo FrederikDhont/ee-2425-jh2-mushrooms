@@ -96,6 +96,7 @@
         {
             IsPoisonous = isPoisonous;
         }
-    }
 
+        // Methods
+    }
 }
