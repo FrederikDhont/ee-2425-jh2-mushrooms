@@ -14,7 +14,7 @@
         // Props
         public string Name { get; protected set; }
 
-        public bool IsAlive { get; set; }
+        public bool IsAlive { get; set; } = true;
 
         public bool IsPoisonous { get; protected set; }
 
@@ -100,7 +100,8 @@
         // Methods
         public override string ToString()
         {
-            return $"{Name}:   ⚖️ {CurrentWeight} gr. (max: {MaxWeight})   📏 {GetSizeDisplay()}   📈 {GrowthRate} cm/night";
+            string notAliveIcon = !IsAlive ? "💀 " : "";
+            return $"{notAliveIcon}{Name}:   ⚖️ {CurrentWeight} gr. (max: {MaxWeight})   📏 {GetSizeDisplay()}   📈 {GrowthRate} cm/night";
         }
 
         string GetSizeDisplay()
@@ -118,6 +119,39 @@
             }
 
             return sizeDisplay;
+        }
+
+        public void Grow(int numOfNights)
+        {
+            // Only grow mushrooms that are alive
+            if (!IsAlive) return;
+
+            // Increment size
+            double sizeIncrement = numOfNights * GrowthRate;
+            CurrentSize += sizeIncrement;
+
+            if (CurrentSize > MaxSize)
+            {
+                CurrentSize = MaxSize;
+                IsAlive = false; // Mushroom dies if it grows over its max size
+            }
+
+            // Increment weight
+            if (CurrentWeight == 0)
+            {
+                CurrentWeight += 50;
+                numOfNights--;
+            }
+
+            for (int i = 0; i < numOfNights; i++)
+            {
+                CurrentWeight = CurrentWeight + (0.1 * CurrentWeight);
+            }
+
+            if (CurrentWeight > MaxWeight)
+            {
+                CurrentWeight = MaxWeight;
+            }
         }
     }
 }
