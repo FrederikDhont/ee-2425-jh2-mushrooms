@@ -98,5 +98,26 @@
         }
 
         // Methods
+        public override string ToString()
+        {
+            return $"{Name}:   ⚖️ {CurrentWeight} gr. (max: {MaxWeight})   📏 {GetSizeDisplay()}   📈 {GrowthRate} cm/night";
+        }
+
+        string GetSizeDisplay()
+        {
+            string sizeDisplay = "";
+
+            for (int i = 0; i < CurrentSize; i++)
+            {
+                sizeDisplay += "◉";
+            }
+
+            for (int i = 0; i < (MaxSize - CurrentSize); i++)
+            {
+                sizeDisplay += "○";
+            }
+
+            return sizeDisplay;
+        }
     }
 }

@@ -25,7 +25,7 @@ namespace Pra.Exam.Core.Services
         }
 
         // Methods
-        void SeedMushrooms()
+        private void SeedMushrooms()
         {
             Portobello portobello = new Portobello();
             Chanterelle chanterelle = new Chanterelle();
@@ -36,7 +36,7 @@ namespace Pra.Exam.Core.Services
 
         }
 
-        void Plant(Mushroom mushroom)
+        public void Plant(Mushroom mushroom)
         {
             if (mushroom == null)
             {
@@ -45,7 +45,7 @@ namespace Pra.Exam.Core.Services
             mushrooms.Add(mushroom);
         }
 
-        bool Pick(Mushroom mushroom)
+        public bool Pick(Mushroom mushroom)
         {
             try
             {

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Pra.Exam.Core.Services;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Pra.Exam.Wpf
@@ -9,6 +10,7 @@ namespace Pra.Exam.Wpf
     public partial class MainWindow : Window
     {
         private double compostSupply = 10;
+        ForestService forest;
 
         public MainWindow()
         {
@@ -17,9 +19,19 @@ namespace Pra.Exam.Wpf
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
+            forest = new ForestService(true); // Create new forest with sample data
+            UpdateForestListInGui(); // Show mushrooms in GUI
         }
 
+        // Logic methods
+
+        // GUI methods
+        void UpdateForestListInGui()
+        {
+            lstForest.ItemsSource = forest.Mushrooms;
+        }
+
+        // Event handlers
         private void LstForest_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
