@@ -77,6 +77,25 @@
         public double GrowthRate { get; protected set; } = 1;
 
         // Constructors
+        protected Mushroom(string name)
+        {
+            Name = name;
+        }
+
+        protected Mushroom(string name, double maxWeight) : this(name)
+        {
+            MaxWeight = maxWeight;
+        }
+
+        protected Mushroom(string name, double maxWeight, double maxSize) : this(name, maxWeight)
+        {
+            MaxSize = maxSize;
+        }
+
+        protected Mushroom(string name, double maxWeight, double maxSize, bool isPoisonous) : this(name, maxWeight, maxSize)
+        {
+            IsPoisonous = isPoisonous;
+        }
     }
 
 }
