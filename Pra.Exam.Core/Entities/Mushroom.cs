@@ -131,10 +131,10 @@
             // Increment size
             if (Name == "Morel")
             {
-                for (int i = 0; i < numOfNights; i++)
+                for (int i = 0; i <= numOfNights; i++)
                 {
-                    GrowthRate += 0.5;
-                    if (GrowthRate >= 2.5) { GrowthRate = 2.5; }
+                    GrowthRate += (double)0.5;
+                    if (GrowthRate >= (double)2.5) { GrowthRate = (double)2.5; }
                     CurrentSize = CurrentSize * GrowthRate * GlobalGrowthRate;
                 }
             }
