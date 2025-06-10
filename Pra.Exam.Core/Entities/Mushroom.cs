@@ -108,17 +108,17 @@
         {
             string sizeDisplay = "";
 
-            for (int i = 0; i < Math.Floor(CurrentSize); i++)
+            for (int i = 0; i < (int)CurrentSize; i++)
             {
                 sizeDisplay += "◉";
             }
 
-            for (int i = 0; i < (MaxSize - CurrentSize); i++)
+            for (int i = 0; i < (MaxSize - (int)CurrentSize); i++)
             {
                 sizeDisplay += "○";
             }
 
-            return sizeDisplay;
+            return sizeDisplay + $"{CurrentSize}";
         }
 
         public void Grow(int numOfNights)
@@ -127,8 +127,19 @@
             if (!IsAlive) return;
 
             // Increment size
-            double sizeIncrement = numOfNights * GrowthRate;
-            CurrentSize += sizeIncrement;
+            if (Name == "Morel")
+            {
+                for (int i = 0; i < numOfNights; i++)
+                {
+                    GrowthRate += 0.5F;
+                    if (GrowthRate >= 2.5) { GrowthRate = 2.5; }
+                    CurrentSize = CurrentSize * GrowthRate;
+                }
+            }
+            else
+            {
+                CurrentSize += numOfNights * GrowthRate;
+            }
 
             if (CurrentSize > MaxSize)
             {
@@ -152,6 +163,22 @@
             {
                 CurrentWeight = MaxWeight;
             }
+        }
+
+        public bool IsReadyToPick()
+        {
+            bool readyToPick = IsAlive && CurrentSize > 0;
+
+            if (Name == "Morel")
+            {
+                if (CurrentWeight < 75) { readyToPick = false; }
+            }
+            if (Name == "Portobello")
+            {
+                if (CurrentSize < 5) { readyToPick = false; }
+            }
+
+            return readyToPick;
         }
     }
 }

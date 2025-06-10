@@ -1,4 +1,5 @@
 ﻿using Pra.Exam.Core.Entities;
+using Pra.Exam.Core.Interfaces;
 using Pra.Exam.Core.Services;
 using System.Windows;
 using System.Windows.Controls;
@@ -35,7 +36,14 @@ namespace Pra.Exam.Wpf
         // Event handlers
         private void LstForest_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if (lstForest.SelectedItem is IHallucinogenic hallucinogenic)
+            {
+                lblHallucinogenicEffects.Content = hallucinogenic.GetEffectDescription();
+            }
+            else
+            {
+                lblHallucinogenicEffects.Content = "";
+            }
         }
         private void BtnCycleDays_Click(object sender, RoutedEventArgs e)
         {
@@ -52,6 +60,15 @@ namespace Pra.Exam.Wpf
 
         private void BtnPickMushroom_Click(object sender, RoutedEventArgs e)
         {
+            Mushroom selectedMush = (Mushroom)lstForest.SelectedItem;
+            if (selectedMush.IsReadyToPick())
+            {
+                forest.Pick(selectedMush);
+            }
+            else
+            {
+                MessageBox.Show("Kan niet geplukt worden");
+            }
 
         }
 
