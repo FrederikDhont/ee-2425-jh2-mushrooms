@@ -13,6 +13,7 @@ namespace Pra.Exam.Wpf
     {
         private double compostSupply = 10;
         ForestService forest;
+        BasketService basket;
 
         public MainWindow()
         {
@@ -22,6 +23,7 @@ namespace Pra.Exam.Wpf
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             forest = new ForestService(true); // Create new forest with sample data
+            basket = new BasketService(); // Create new basket
             UpdateForestListInGui(); // Show mushrooms in GUI
         }
 
@@ -31,6 +33,11 @@ namespace Pra.Exam.Wpf
         void UpdateForestListInGui()
         {
             lstForest.ItemsSource = forest.Mushrooms;
+        }
+
+        void UpdateBasketListInGui()
+        {
+            lstBasket.ItemsSource = basket.Mushrooms;
         }
 
         // Event handlers
@@ -64,6 +71,16 @@ namespace Pra.Exam.Wpf
             if (selectedMush.IsReadyToPick())
             {
                 forest.Pick(selectedMush);
+                UpdateForestListInGui();
+                try
+                {
+                    basket.AddMushroom(selectedMush);
+                    UpdateBasketListInGui();
+                }
+                catch (InvalidOperationException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
             else
             {

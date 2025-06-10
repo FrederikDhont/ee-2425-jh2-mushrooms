@@ -180,5 +180,7 @@
 
             return readyToPick;
         }
+
+        public abstract Mushroom Reproduce();
     }
 }

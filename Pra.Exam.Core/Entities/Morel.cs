@@ -2,7 +2,7 @@
 
 namespace Pra.Exam.Core.Entities
 {
-    public class Morel : Mushroom, IHallucinogenic
+    public class Morel : Mushroom, IHallucinogenic, IReproducable
     {
         // Props
         public bool HasHallucinogenicEffect { get; private set; } = false;
@@ -19,6 +19,11 @@ namespace Pra.Exam.Core.Entities
         public string GetEffectDescription()
         {
             return "When this mushroom is eaten, your vision becomes blurry and very colorful";
+        }
+
+        public override Mushroom Reproduce()
+        {
+            return new Morel();
         }
     }
 }
