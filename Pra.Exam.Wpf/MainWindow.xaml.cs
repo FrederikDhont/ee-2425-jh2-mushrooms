@@ -91,7 +91,7 @@ namespace Pra.Exam.Wpf
 
         private void SlrGlobalGrowthRate_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-
+            Mushroom.GlobalGrowthRate = (double)slrGlobalGrowthRate.Value;
         }
 
         private void btnGiveCompost_Click(object sender, RoutedEventArgs e)

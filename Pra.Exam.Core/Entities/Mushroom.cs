@@ -2,6 +2,8 @@
 {
     public abstract class Mushroom
     {
+        public static double GlobalGrowthRate { get; set; } = 1;
+
         // Fields
         private double currentSize;
 
@@ -118,7 +120,7 @@
                 sizeDisplay += "○";
             }
 
-            return sizeDisplay + $"{CurrentSize}";
+            return sizeDisplay;
         }
 
         public void Grow(int numOfNights)
@@ -131,14 +133,14 @@
             {
                 for (int i = 0; i < numOfNights; i++)
                 {
-                    GrowthRate += 0.5F;
+                    GrowthRate += 0.5;
                     if (GrowthRate >= 2.5) { GrowthRate = 2.5; }
-                    CurrentSize = CurrentSize * GrowthRate;
+                    CurrentSize = CurrentSize * GrowthRate * GlobalGrowthRate;
                 }
             }
             else
             {
-                CurrentSize += numOfNights * GrowthRate;
+                CurrentSize += numOfNights * GrowthRate * GlobalGrowthRate;
             }
 
             if (CurrentSize > MaxSize)
